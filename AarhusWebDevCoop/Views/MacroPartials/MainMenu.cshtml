@@ -1,0 +1,61 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+@{ 
+    var site = Model.Content.Site();
+    var selection = site.Children.Where(x => x.IsVisible() && x.DocumentTypeAlias != "sitemap").ToArray(); 
+}
+
+<ul class="navbar-nav mr-auto">
+                    
+    <li class="nav-item @(Model.Content.Name== site.Name? " current": null )">
+        <a class="nav-link" href="@site.Url">@site.Name</a>
+    </li>
+    @if (selection.Length > 0)
+    {
+
+        foreach (var item in selection)
+        {
+
+            
+
+            if (item.DocumentTypeAlias == "projectsOverview"){
+                var children = item.Children().Where( x => 
+                    x.HasValue("projectStatus") && 
+                    Umbraco.GetPreValueAsString( x.GetPropertyValue<int>("projectStatus") ) == "Completed" && 
+                    !x.GetPropertyValue<bool>("umbracoNaviHide") )
+                    .OrderBy("CreateDate desc").ToArray();
+                
+
+
+                <li class="nav-item dropdown @(item.IsAncestorOrSelf(Model.Content) ? " current" : null)">
+                    
+                    @if(children.Length > 0){
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            @item.Name
+                        </a>
+                        <div class="dropdown-menu">
+                            @foreach(var child in children){
+                                var isProtected = umbraco.library.IsProtected(child.Id, child.Path);
+                                var loginAccess = isProtected && umbraco.library.HasAccess(child.Id, child.Path);
+
+                                if (!isProtected || loginAccess)
+                                {
+                                <div class="dropdown-item child-item @(child.IsAncestorOrSelf(Model.Content) ? " current" : null)">
+                                    <a class="nav-link" href="@child.Url">@child.Name</a>
+                                </div>
+                                }
+                            }
+                        </div>
+                    } else{
+                        <a class="nav-link" href="@item.Url">@item.Name</a>
+                    }
+                </li>
+                
+            } else{
+                <li class="nav-item @(item.IsAncestorOrSelf(Model.Content) ? " current" : null)">
+                    <a class="nav-link" href="@item.Url">@item.Name</a>
+                </li>
+            }
+        }
+    }
+    
+</ul>

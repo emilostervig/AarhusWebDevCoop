@@ -1,0 +1,45 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@using Umbraco.Core.Models
+@using Umbraco.Web
+
+
+@*
+    This snippet shows how simple it is to fetch only children of a certain Document Type.
+
+    Be sure to change "IPublishedContent" below to match your needs, such as "TextPage" or "NewsItem".
+    (You can find the alias of your Document Type by editing it in the Settings section)
+*@
+@{
+    var memberService = ApplicationContext.Current.Services.MemberService;
+    var members = memberService.GetMembersByGroup("Active");
+
+}
+
+@foreach (var member in members)
+{
+    
+    
+    <img src="@Umbraco.TypedMember(member.Id).GetCropUrl("photo", "thumbnail")" />
+    <p>
+        @member.Name
+        <br>
+        @member.GetValue("address")
+        <br>
+        @member.GetValue("zip") @member.GetValue("city")
+        <br>
+        Email: @member.Email
+        <br>
+    </p>
+    if (member.GetValue("skills") != null)
+    {
+        @Html.Raw("Skills:") 
+        {
+            string[] skills = member.GetValue("skills").ToString().Split(',');
+            string skillString = string.Join(", ", from skill in skills
+                                                   select umbraco.library.GetPreValueAsString(Convert.ToInt32(skill)));
+            <span>@skillString</span>
+        }
+    }
+
+
+}

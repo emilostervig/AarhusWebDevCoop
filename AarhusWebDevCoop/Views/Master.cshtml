@@ -1,0 +1,88 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@{
+	Layout = null;
+}
+
+@{
+    var site = Model.Content.Site();
+    var selection = site.Children.Where(x => x.IsVisible()).ToArray();
+}
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <meta name="keywords" content="@Umbraco.Field(" metaKeywords")">
+
+    <title>@Umbraco.Field("siteTitle")</title>
+    <meta name="description" content="@Umbraco.Field(" MetaDescription")">
+    <meta name="author" content="">
+
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/styles.css">
+
+    
+</head>
+<body>
+
+    <header id="header">
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            @{
+                var logo = Model.Content.GetPropertyValue<IPublishedContent>("logo", true);
+                if (logo != null)
+                {
+
+                    <a class="navbar-brand" href="@site.Url">
+                        <img class="site-logo" src="@logo.Url" alt="@logo.GetPropertyValue(" alt")" style="height: 60px;" />
+                    </a>
+
+                }
+            }
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                @Umbraco.RenderMacro("MainMenu")
+
+            </div>
+        </nav>
+
+    </header>
+    <main>
+        @RenderBody()
+
+    </main>
+
+
+
+    <footer id="footer">
+        <div class="inside-footer container">
+            <div class="row footer-row">
+                <div class="col-sm-12">
+                    @Model.Content.GetPropertyValue("footer", true)
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/popper.min.js"></script>
+
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+
+@*
+ This snippet makes a list of links to the of children of the current page using
+an unordered HTML list.
+ How it works:
+- It uses the Children method to get all child pages
+- It takes only pages that are marked as visible (we’ll talk about that in an
+upcoming lesson)
+- It then uses the OrderByDescending() method, which uses a lambda expression
+to sort on the property CreateDate.
+- It iterates over the selection to generate links so the visitor can go to
+each page
+*@
+
+@{ 
+    var root = Model.Content;
+    var selection = root.Children.Where(x => x.IsVisible()).OrderByDescending(x => x.CreateDate).ToArray(); 
+        
+}
+
+@if (selection.Length > 0)
+{
+
+    foreach (var item in selection)
+    {
+        <div class="article">
+            <div class="articletitle">
+                <a href="@item.Url">@item.Name</a>
+            </div>
+            <div class="articlepreview">
+                @{ 
+                    
+                    Umbraco.Truncate("Test er en lang string bablablalbalbl", 10, true);
+                    var contentSnippet = Umbraco.Truncate(library.StripHtml(@item.GetPropertyValue("articleContent").ToString()), 120, true);
+                    
+                    
+                }
+                @*Umbraco.Truncate(@item.GetPropertyValue("articleContent").ToString(),100)*@
+                <p>@contentSnippet</p>
+                <a href="@item.Url">Read More..</a>
+            </div>
+        </div>
+     <hr/>
+    }
+}

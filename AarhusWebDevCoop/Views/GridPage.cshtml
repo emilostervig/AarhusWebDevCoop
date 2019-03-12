@@ -1,0 +1,16 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@{
+	Layout = "Master.cshtml";
+}
+
+<div id="header-banner" class="jumbotron">
+    <div class="container">
+        <h1 class="banner-title font-weight-bold text-center">@Umbraco.Field("pageHeader")</h1>
+    </div>
+</div>
+<div id="main-container">
+    <div id="main" class="wrapper clearfix">
+        @Html.GetGridHtml(Model.Content, "gridContent", "Bootstrap3")
+    </div> <!-- #main -->
+</div> <!-- #main-container -->
