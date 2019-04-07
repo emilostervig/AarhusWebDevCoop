@@ -5,7 +5,7 @@
 }
 
 
-<div id="header-banner" class="jumbotron">
+<div id="header-banner" class="">
     <div class="container">
         <h1 class="banner-title font-weight-bold text-center">@Umbraco.Field("articlesTitle")</h1>
     </div>
@@ -17,7 +17,11 @@
                 <div class="col-sm-12">
                     @Umbraco.Field("articlesBodyText")
                     
+                    <div class="articles-grid">
+
                     @Umbraco.RenderMacro("ArticlesList")
+
+                    </div>
                 </div>
             </div>
         </div>

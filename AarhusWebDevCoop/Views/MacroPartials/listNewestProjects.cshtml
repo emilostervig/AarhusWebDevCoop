@@ -4,32 +4,43 @@
 @{
 
     var site = Model.Content.Site();
-    var archive = site.Children.Where( x => x.DocumentTypeAlias == "projectsOverview" ).First();
+    var archive = site.Children.Where(x => x.DocumentTypeAlias == "projectsOverview").First();
     int numOfProjects = 5;
     @*
-    int numOfProjects = Convert.ToUInt16(Model.MacroParameters["numOfProjects"]);
+        int numOfProjects = Convert.ToUInt16(Model.MacroParameters["numOfProjects"]);
 
-*@
+    *@
 
-
+    /*
     var children2 = archive.Children().Where( x => x.HasValue("projectStatus") && Umbraco.GetPreValueAsString( x.GetPropertyValue<int>
     ("projectStatus") ) == "Completed" ).OrderBy("CreateDate desc").Take(numOfProjects).ToArray();
 
-    var children = archive.Children().Where( x => x.HasValue("projectStatus") ).OrderBy("CreateDate desc").Take(numOfProjects).ToArray();
-    }
+    */
 
-    @if(children.Length > 0){
+    var children = archive.Children()
+        .Where(
+        x => x.HasValue("projectStatus") &&
+        Umbraco.GetPreValueAsString(x.GetPropertyValue<int>("projectStatus")) == "Completed" &&
+        (umbraco.library.HasAccess(x.Id, x.Path))
+        )
+        .OrderBy("CreateDate desc").Take(numOfProjects).ToArray();
+}
+
+@if (children.Length > 0)
+{
     <ul class="projects-list">
-        @foreach (var child in children){
-        <li class="single-project">
-            <a href="@child.Url">
-                @child.Name
-            </a>
-        </li>
+        @foreach (var child in children)
+        {
+
+            <li class="single-project">
+                <a href="@child.Url">
+                    @child.Name
+                </a>
+            </li>
         }
 
 
     </ul>
-    }
+}
 
 

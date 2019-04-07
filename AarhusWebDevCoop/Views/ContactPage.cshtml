@@ -1,11 +1,29 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.ContactPage>
 @using ContentModels = Umbraco.Web.PublishedContentModels;
 @{
-	Layout = "Master.cshtml";
+    Layout = "Master.cshtml";
 }
 
-<h2>@CurrentPage.Name</h2>
 
-<div id="contact-form">
-    @Html.Action("Index", "ContactFormSurface")
+<div id="header-banner" class="">
+    <div class="container">
+        <h1 class="banner-title font-weight-bold text-center">@Umbraco.Field("pageTitle")</h1>
+    </div>
+</div>
+
+
+<div id="main-container" class="single-project">
+    <div id="main" class="wrapper clearfix">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    @Umbraco.Field("introText")
+                </div>
+                <div id="contact-form">
+
+                    @Html.Action("Index", "ContactFormSurface")
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

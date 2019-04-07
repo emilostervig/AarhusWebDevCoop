@@ -1,7 +1,25 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.Members>
 @using ContentModels = Umbraco.Web.PublishedContentModels;
 @{
-	Layout = "Master.cshtml";
+    Layout = "Master.cshtml";
 }
 
-@Html.Partial("MemberList")
+<div id="header-banner">
+    <h1>@Umbraco.Field("pageTitle")</h1>
+</div>
+<div id="main-container" class="single-project">
+    <div id="main" class="wrapper clearfix">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    @Umbraco.Field("pageText")
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    @Html.Partial("MemberList")
+                </div>
+            </div>
+        </div>
+    </div> <!-- #main -->
+</div> <!-- #main-container -->

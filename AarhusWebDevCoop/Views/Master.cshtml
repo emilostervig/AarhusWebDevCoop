@@ -27,9 +27,14 @@
 
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
+
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,700|Varela+Round" rel="stylesheet">
+
+
     <link rel="stylesheet" href="~/Content/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/bootstrap-reboot.css" />
     <link rel="stylesheet" href="~/css/styles.css">
-    
+
     <meta name="theme-color" content="#2f4454" />
 </head>
 <body>
@@ -37,7 +42,7 @@
     <!-- This comment also is only for git purposes -->
     <header id="header">
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-dark">
             @{
                 var logo = Model.Content.GetPropertyValue<IPublishedContent>("logo", true);
                 if (logo != null)

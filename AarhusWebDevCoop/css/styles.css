@@ -1,3 +1,145 @@
+:root {
+    --main-theme-color: #AC3b61;
+    --secondary-theme-color: #123c69;
+    --base-color: #f7f9fa;
+    --gray-color: #343a40;
+    --accent-color: #edc7b7;
+
+    --secondary-theme-color-dark: #002350;
+
+    --heading-font: 'Varela Round', sans-serif;
+    --body-font: "Raleway", sans-serif;
+}
+
+
+h1, h2, h3{
+    font-family: var(--heading-font);
+}
+
+
+blockquote{
+    font-style: italic;
+}
+
+
+a{
+    color: var(--secondary-theme-color);
+}
+
+a:hover{
+    text-decoration: none;
+    color: var(--secondary-theme-color-dark);
+}
+
 .umb-grid .column img{
 	max-width: 100%;
 }
+
+.umb-grid .container{
+    padding-bottom: 60px;
+}
+
+body{
+    font-family: var(--body-font);
+    font-weight: 300;
+}
+
+#header{
+    background-color: var(--gray-color);
+}
+
+.dropdown-menu{
+    background-color: var(--gray-color);
+}
+.dropdown-menu .dropdown-item:hover {
+    background-color: var(--gray-color);
+}
+.dropdown-menu .dropdown-item a {
+    color: rgba(255,255,255,.5);
+}
+
+.drpodown-menu .dropdown-item a:hover {
+    color: rgba(255,255,255,.75);
+}
+
+#header-banner{
+    background-image: linear-gradient(62deg, var(--main-theme-color), var(--secondary-theme-color));
+    text-align: center;
+    color: var(--base-color);
+    padding: 7% 0px;
+}
+#header-banner.fp-hero{
+    padding: 12% 0%;
+}
+#header-banner h1 {
+    font-size: 48px;
+}
+#header-banner .sub-title {
+    font-family: var(--body-font);
+    font-weight: 300;
+}
+body{
+    background-color: var(--base-color);
+}
+
+#main-container
+{
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+#footer {
+    padding: 40px 0px;
+    background-color: var(--gray-color);
+    color: var(--base-color);
+}
+
+
+
+
+.projects-list{
+    list-style: none;
+    padding-left: 0px;
+}
+
+.projects-list .single-project a::before{
+    content: "-";
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+
+
+/* --- Single project --- */
+.related-projects{
+    margin-top: 60px;
+}
+
+
+
+/* --- News archive --- */
+.articletitle a{
+    font-weight: 600;
+    color: var(--base-color);
+    font-size: 18px;
+}
+.articles-grid .article a {
+    font-weight: 600;
+    color: var(--base-color);
+}
+
+.articles-grid{
+    margin-left: -15px;
+    margin-right: -15px;
+    display: flex;
+    flex-wrap: wrap;
+}
+    .articles-grid .article {
+        width: calc(50% - 30px);
+        padding: 20px 30px;
+        margin: 15px;
+        background-color: var(--accent-color);
+        background-image: linear-gradient(21deg, var(--secondary-theme-color-dark), var(--secondary-theme-color));
+        color: var(--base-color);
+        box-shadow: 0px 0px 22px -2px rgba(0,0,0,0.5)
+    }
+

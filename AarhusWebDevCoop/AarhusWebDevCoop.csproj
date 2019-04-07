@@ -398,6 +398,7 @@
     <Content Include="Views\Partials\LogoutForm.cshtml" />
     <Content Include="Views\Partials\MemberList.cshtml" />
     <Content Include="Views\Members.cshtml" />
+    <Content Include="Views\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -4,13 +4,20 @@
     Layout = "Master.cshtml";
 }
 
-
+<div class="fp-hero" id="header-banner">
+    <h1>@Umbraco.Field("siteTitle")</h1>
+    <h4 class="sub-title">@Umbraco.Field("siteTagline")</h4>
+</div>
 <div id="main-container">
     <div id="main" class="wrapper clearfix">
         <div class="container">
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-8">
                     @Umbraco.Field("mainContent")
+                </div>
+                <div class="col-sm-4">
+                    <h3>Our latest projects</h3>
+                    @Umbraco.RenderMacro("listNewestProjects")
                 </div>
             </div>
         </div>

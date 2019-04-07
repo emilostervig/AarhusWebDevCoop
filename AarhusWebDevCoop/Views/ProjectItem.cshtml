@@ -1,5 +1,28 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.ProjectItem>
 @using ContentModels = Umbraco.Web.PublishedContentModels;
 @{
-	Layout = "Master.cshtml";
+    Layout = "Master.cshtml";
 }
+
+<div id="header-banner">
+    <h1>@Umbraco.Field("ProjectTitle")</h1>
+</div>
+<div id="main-container" class="single-project">
+    <div id="main" class="wrapper clearfix">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    @Umbraco.Field("projectDescription")
+                </div>
+            </div>
+        </div>
+        <div class="container related-projects">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3>Our latest projects</h3>
+                    @Umbraco.RenderMacro("listNewestProjects")
+                </div>
+            </div>
+        </div>
+    </div> <!-- #main -->
+</div> <!-- #main-container -->

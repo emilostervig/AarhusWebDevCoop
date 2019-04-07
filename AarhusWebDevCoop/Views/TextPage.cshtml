@@ -4,9 +4,9 @@
 	Layout = "Master.cshtml";
 }
 
-<div id="header-banner" class="jumbotron">
+<div id="header-banner" class="">
     <div class="container">
-        <h1 class="banner-title font-weight-bold text-center">@Umbraco.Field("header")</h1>
+        <h1 class="banner-title font-weight-bold">@Umbraco.Field("header")</h1>
     </div>
 </div>
 <div id="main-container">
@@ -20,12 +20,4 @@
         </div>
     </div> <!-- #main -->
 </div> <!-- #main-container -->
-<footer id="footer">
-    <div class="inside-footer container">
-        <div class="row footer-row">
-            <div class="col-sm-12">
-                @Umbraco.Field("header")
-            </div>
-        </div>
-    </div>
-</footer>
+
